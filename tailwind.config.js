@@ -5,6 +5,7 @@ export default {
 		extend: {
 			colors: {
 				primary: '#157AFF',
+				secundary: '#142749',
 			},
 			fontFamily: {
 				inter: 'Inter Variable',
