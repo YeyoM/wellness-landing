@@ -9,7 +9,6 @@ import maxes from '@assets/maxes.png';
 import phone_inclined from '@assets/phone_inclined.png';
 import iphone_top from '@assets/iphone_top.png';
 import iphone_bottom from '@assets/iphone_bottom.png';
-import lines from '@assets/lines.png';
 
 // SVG
 import icon_1 from '@assets/svg/icon_1.svg';
@@ -19,7 +18,6 @@ import icon_4 from '@assets/svg/icon_4.svg';
 import icon_5 from '@assets/svg/icon_5.svg';
 import icon_6 from '@assets/svg/icon_6.svg';
 import semicircle from '@assets/svg/semicircle.svg';
-// import line_primary from '@assets/svg/line_primary.svg';
 
 // Components
 import Footer from '@components/Footer';
@@ -30,7 +28,7 @@ import Counter from '@components/Counter';
 function App() {
 	return (
 		<>
-			<div className="bg-black flex items-center w-full h-screen relative font-inter">
+			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative font-inter">
 				<div className="flex justify-center items-start gap-20">
 					<div className="w-5/12 flex flex-col items-start gap-6 relative z-20">
 						<img className="w-9/12" src={logo} alt="logo" />
@@ -46,16 +44,6 @@ function App() {
 					<div className="relative z-20">
 						<img className="w-72" src={iphone} alt="iphone-wellnes" />
 					</div>
-					<img
-						className="absolute z-10 bottom-0"
-						src={lines}
-						alt="lines-footer"
-					/>
-					{/* <img
-					className="absolute object-cover left-0 bottom-0 w-full h-60 z-0"
-					src={line_primary}
-					alt="lines-footer"
-				/> */}
 				</div>
 			</div>
 			<div className="bg-black w-full h-screen flex flex-col gap-16 justify-center items-center font-inter">
@@ -188,9 +176,13 @@ function App() {
 							fitness
 						</p>
 					</div>
-					<div className='relative right-24'>
+					<div className="relative right-24">
 						<Button>Sube tu CV aqui!</Button>
-						<img className='absolute z-0 -top-3 scale-[1.8]' src={semicircle} alt="semicircle" />
+						<img
+							className="absolute z-0 -top-3 scale-[1.8]"
+							src={semicircle}
+							alt="semicircle"
+						/>
 					</div>
 				</div>
 			</div>
