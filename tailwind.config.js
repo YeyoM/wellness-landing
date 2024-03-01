@@ -6,6 +6,7 @@ export default {
 			colors: {
 				primary: '#157AFF',
 				secundary: '#142749',
+				text_blue: '#111827',
 			},
 			fontFamily: {
 				inter: 'Inter Variable',

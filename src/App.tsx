@@ -4,6 +4,8 @@ import iphone from '@assets/iphone.png';
 import chasing from '@assets/chasing.png';
 import maxes from '@assets/maxes.png';
 import phone_inclined from '@assets/phone_inclined.png';
+import iphone_top from '@assets/iphone_top.png';
+import iphone_bottom from '@assets/iphone_bottom.png';
 import icon_1 from '@assets/svg/icon_1.svg';
 import icon_2 from '@assets/svg/icon_2.svg';
 import icon_3 from '@assets/svg/icon_3.svg';
@@ -51,7 +53,7 @@ function App() {
 				/> */}
 				</div>
 			</div>
-			<div className="bg-black w-full h-screen flex flex-col gap-12 justify-center items-center font-inter">
+			<div className="bg-black w-full h-screen flex flex-col gap-16 justify-center items-center font-inter">
 				<div className="flex flex-col gap-5 text-white text-center w-1/2">
 					<h2 className="font-bold text-5xl">100% personalizado</h2>
 					<p>
@@ -138,6 +140,34 @@ function App() {
 						description="Challenges"
 						row
 					/>
+				</div>
+			</div>
+			<div className="bg-primary flex justify-center gap-20 font-inter">
+				<form className="w-4/12 flex flex-col justify-center gap-3">
+					<h3 className="text-text_blue font-bold text-4xl">
+						Solo 50 lugares disponibles para la primera fase
+					</h3>
+					<p className="text-text_blue">
+						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
+						tener acceso a la App{' '}
+					</p>
+					<div className="flex flex-col gap-3">
+						<label className="text-white">E-mail:</label>
+						<input
+							className="rounded-full p-3"
+							required
+							type="email"
+							placeholder="fitnessjoe@example.com"
+						/>
+					</div>
+				</form>
+				<div className="h-[65vh] flex gap-5">
+					<div className="flex items-start">
+						<img width={232} src={iphone_top} alt="iphone_top" />
+					</div>
+					<div className="flex items-end">
+						<img width={232} src={iphone_bottom} alt="iphone_bottom" />
+					</div>
 				</div>
 			</div>
 		</>
