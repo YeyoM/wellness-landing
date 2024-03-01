@@ -14,6 +14,7 @@ import icon_6 from '@assets/svg/icon_6.svg';
 import lines from '@assets/lines.png';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
+import './App.css'
 
 function App() {
 	return (
