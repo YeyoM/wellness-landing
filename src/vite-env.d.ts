@@ -10,4 +10,5 @@ export interface HerramientasCardMiniI {
 	icon: string;
 	title: string;
 	description: string;
+	row?: boolean;
 }

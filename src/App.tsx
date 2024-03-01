@@ -93,7 +93,7 @@ function App() {
 					/>
 				</div>
 			</div>
-			<div className="bg-black w-full h-screen flex justify-center items-center">
+			<div className="bg-black w-full h-screen flex justify-center items-center font-inter">
 				<div className="flex flex-col items-start gap-10">
 					<div className="flex flex-col gap-3">
 						<h2 className="text-white text-5xl font-bold w-4/6">
@@ -117,6 +117,28 @@ function App() {
 					</div>
 				</div>
 				<img width={520} src={phone_inclined} alt="phone inclined" />
+			</div>
+			<div className="h-72 bg-black flex justify-center items-center gap-24 text-white font-inter">
+				<div className="flex flex-col gap-3">
+					<h3 className="w-96 font-bold text-4xl">
+						Con 200+ ejercicios diferentes
+					</h3>
+					<p>Crea la rutina perfecta para ti</p>
+				</div>
+				<div className="flex flex-col gap-5">
+					<HerramientasCardMini
+						icon={icon_1}
+						title="10,000+"
+						description="Combinaciones de rutinas"
+						row
+					/>
+					<HerramientasCardMini
+						icon={icon_5}
+						title="500+"
+						description="Challenges"
+						row
+					/>
+				</div>
 			</div>
 		</>
 	);
