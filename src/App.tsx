@@ -14,6 +14,7 @@ import icon_5 from '@assets/svg/icon_5.svg';
 import icon_6 from '@assets/svg/icon_6.svg';
 // import line_primary from '@assets/svg/line_primary.svg';
 import lines from '@assets/lines.png';
+import Footer from '@components/Footer';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import './App.css'
@@ -170,6 +171,7 @@ function App() {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 }
