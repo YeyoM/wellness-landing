@@ -1,6 +1,9 @@
 import '@fontsource-variable/inter';
 import logo from '@assets/logo.png';
 import iphone from '@assets/iphone.png';
+import chasing from '@assets/chasing.png';
+import maxes from '@assets/maxes.png';
+import phone_inclined from '@assets/phone_inclined.png';
 import icon_1 from '@assets/svg/icon_1.svg';
 import icon_2 from '@assets/svg/icon_2.svg';
 import icon_3 from '@assets/svg/icon_3.svg';
@@ -49,7 +52,7 @@ function App() {
 			</div>
 			<div className="bg-black w-full h-screen flex flex-col gap-12 justify-center items-center font-inter">
 				<div className="flex flex-col gap-5 text-white text-center w-1/2">
-					<p className="font-bold text-5xl">100% personalizado</p>
+					<h2 className="font-bold text-5xl">100% personalizado</h2>
 					<p>
 						Cada persona tiene diferentes objetivos dentro del gimnasio es por
 						eso que las herramientas dentro de la app se adaptaran completamente
@@ -88,6 +91,31 @@ function App() {
 						description="Conecta con personas que comparten tus objetivos en un espacio de apoyo y motivación."
 					/>
 				</div>
+			</div>
+			<div className="bg-black w-full h-screen flex justify-center items-center">
+				<div className="flex flex-col items-start gap-10">
+					<div className="flex flex-col gap-3">
+						<h2 className="text-white text-5xl font-bold w-4/6">
+							Comparte tus logros en tu perfil
+						</h2>
+						<p className="text-[#9095A1]">Inspira a otros usuarios</p>
+					</div>
+					<img
+						className="transition hover:scale-105"
+						src={maxes}
+						alt="maxes"
+						width={350}
+					/>
+					<div className="w-10/12 flex justify-end">
+						<img
+							className="transition hover:scale-105"
+							src={chasing}
+							alt="chasing"
+							width={350}
+						/>
+					</div>
+				</div>
+				<img width={520} src={phone_inclined} alt="phone inclined" />
 			</div>
 		</>
 	);
