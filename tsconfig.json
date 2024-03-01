@@ -22,7 +22,8 @@
 
     // Extras
     "paths": {
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": ["src"],
