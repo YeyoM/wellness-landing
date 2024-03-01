@@ -1,4 +1,7 @@
 import '@fontsource-variable/inter';
+import './App.css';
+
+// Images
 import logo from '@assets/logo.png';
 import iphone from '@assets/iphone.png';
 import chasing from '@assets/chasing.png';
@@ -6,18 +9,22 @@ import maxes from '@assets/maxes.png';
 import phone_inclined from '@assets/phone_inclined.png';
 import iphone_top from '@assets/iphone_top.png';
 import iphone_bottom from '@assets/iphone_bottom.png';
+import lines from '@assets/lines.png';
+
+// SVG
 import icon_1 from '@assets/svg/icon_1.svg';
 import icon_2 from '@assets/svg/icon_2.svg';
 import icon_3 from '@assets/svg/icon_3.svg';
 import icon_4 from '@assets/svg/icon_4.svg';
 import icon_5 from '@assets/svg/icon_5.svg';
 import icon_6 from '@assets/svg/icon_6.svg';
+import semicircle from '@assets/svg/semicircle.svg';
 // import line_primary from '@assets/svg/line_primary.svg';
-import lines from '@assets/lines.png';
+
+// Components
 import Footer from '@components/Footer';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
-import './App.css'
 
 function App() {
 	return (
@@ -33,11 +40,7 @@ function App() {
 							Entrena con la ayuda de AI y descubre la mejor hora para realizar
 							tu rutina
 						</p>
-						<Button
-							btn
-							className="text-white bg-primary px-4 py-3 font-semibold rounded hover:bg-[#1159b8] transition">
-							Unete ya!
-						</Button>
+						<Button redirect>Unete ya!</Button>
 					</div>
 					<div className="relative z-20">
 						<img className="w-72" src={iphone} alt="iphone-wellnes" />
@@ -152,7 +155,7 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<div className="flex flex-col gap-3">
+					<div className="flex flex-col gap-2">
 						<label className="text-white">E-mail:</label>
 						<input
 							className="rounded-full p-3"
@@ -168,6 +171,25 @@ function App() {
 					</div>
 					<div className="flex items-end">
 						<img width={232} src={iphone_bottom} alt="iphone_bottom" />
+					</div>
+				</div>
+			</div>
+			<div
+				id="access_to_app"
+				className="h-[38vh] bg-black text-white flex justify-center items-center">
+				<div className="w-8/12 flex justify-between items-center border-t pt-5 relative">
+					<div className="w-96 flex flex-col gap-3">
+						<h3 className="text-4xl font-bold">
+							Buscas practicas profesionales
+						</h3>
+						<p>
+							Unete a nuestro equipo y ayudanos a revoluzionar la industria del
+							fitness
+						</p>
+					</div>
+					<div className='relative right-24'>
+						<Button>Sube tu CV aqui!</Button>
+						<img className='absolute z-0 -top-3 scale-[1.8]' src={semicircle} alt="semicircle" />
 					</div>
 				</div>
 			</div>

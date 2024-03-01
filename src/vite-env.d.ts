@@ -2,8 +2,7 @@
 
 export interface ButtonI {
 	children: ReactChild | ReactChildren;
-	className: string;
-	btn?: boolean;
+	redirect?: boolean;
 }
 
 export interface HerramientasCardMiniI {
