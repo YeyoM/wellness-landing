@@ -5,3 +5,9 @@ export interface ButtonI {
 	className: string;
 	btn?: boolean;
 }
+
+export interface HerramientasCardMiniI {
+	icon: string;
+	title: string;
+	description: string;
+}
