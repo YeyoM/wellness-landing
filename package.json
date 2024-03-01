@@ -14,7 +14,8 @@
     "@types/node": "^20.11.24",
     "path": "^0.12.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

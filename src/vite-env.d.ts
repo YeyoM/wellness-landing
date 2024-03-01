@@ -11,3 +11,8 @@ export interface HerramientasCardMiniI {
 	description: string;
 	row?: boolean;
 }
+
+export interface CounterI {
+	n: number;
+	className?: string;
+}

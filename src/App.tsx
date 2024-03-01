@@ -25,6 +25,7 @@ import semicircle from '@assets/svg/semicircle.svg';
 import Footer from '@components/Footer';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
+import Counter from '@components/Counter';
 
 function App() {
 	return (
@@ -127,7 +128,7 @@ function App() {
 			<div className="h-72 bg-black flex justify-center items-center gap-24 text-white font-inter">
 				<div className="flex flex-col gap-3">
 					<h3 className="w-96 font-bold text-4xl">
-						Con 200+ ejercicios diferentes
+						Con <Counter n={200} />+ ejercicios diferentes
 					</h3>
 					<p>Crea la rutina perfecta para ti</p>
 				</div>
