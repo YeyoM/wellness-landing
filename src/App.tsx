@@ -24,8 +24,54 @@ import Footer from '@components/Footer';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import Counter from '@components/Counter';
+import { useState } from 'react';
+import { HashLoader } from 'react-spinners';
+import { useForm } from 'react-hook-form';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
 
 function App() {
+	const [email, setEmail] = useState('');
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
+
+	const getAll = async () => {
+		const querySnapshot = await getDocs(collection(db, 'firsted_access'));
+		let emailExists = false;
+		querySnapshot.forEach((doc) => {
+			if (doc.data().email === email) {
+				emailExists = true;
+				setError(true);
+				console.error('⛔ El correo electrónico ya se encuentra registrado.');
+				return;
+			}
+		});
+		return emailExists;
+	};
+
+	const { handleSubmit } = useForm();
+
+	const onSubmit = handleSubmit(async () => {
+		setLoading(true);
+		setError(false);
+		setSuccess(false);
+		const emailExists = await getAll();
+
+		if (!emailExists) {
+			setError(false);
+			const ref = collection(db, 'firsted_access');
+			await addDoc(ref, { email })
+				.then(() => {
+					setSuccess(true);
+					console.log('✅ Solicitud enviada correctamente.');
+				})
+				.catch((error) => console.error('⛔ Error:', error));
+		}
+		setLoading(false);
+	});
+
+
 	return (
 		<>
 			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative font-inter">
@@ -135,8 +181,10 @@ function App() {
 					/>
 				</div>
 			</div>
-			<div className="bg-primary flex justify-center gap-20 font-inter">
-				<form className="w-4/12 flex flex-col justify-center gap-3">
+			<div
+				id="access_to_app"
+				className="bg-primary flex justify-center gap-20 font-inter">
+				<div className="w-4/12 flex flex-col justify-center gap-3">
 					<h3 className="text-text_blue font-bold text-4xl">
 						Solo 50 lugares disponibles para la primera fase
 					</h3>
@@ -144,16 +192,39 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<div className="flex flex-col gap-2">
+					<form onSubmit={onSubmit} className="flex flex-col items-start gap-3">
 						<label className="text-white">E-mail:</label>
 						<input
-							className="rounded-full p-3"
+							className="w-full rounded-full p-3"
 							required
 							type="email"
+							name="email"
+							onChange={(e) => setEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
-					</div>
-				</form>
+						<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+							{
+								loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'
+							}
+						</button>
+						{error ? (
+							<p className="text-sm text-red-600 font-bold">
+								Parece ser que el correo que intentas enviar, ya ha sido
+								registrado
+							</p>
+						) : (
+							<>
+								{success ? (
+									<p className="text-green-500 font-bold">
+										¡Registro enviado correctamente!
+									</p>
+								) : (
+									''
+								)}
+							</>
+						)}
+					</form>
+				</div>
 				<div className="h-[65vh] flex gap-5">
 					<div className="flex items-start">
 						<img width={232} src={iphone_top} alt="iphone_top" />
@@ -163,9 +234,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div
-				id="access_to_app"
-				className="h-[38vh] bg-black text-white flex justify-center items-center">
+			<div className="h-[38vh] bg-black text-white flex justify-center items-center">
 				<div className="w-8/12 flex justify-between items-center border-t pt-5 relative">
 					<div className="w-96 flex flex-col gap-3">
 						<h3 className="text-4xl font-bold">
