@@ -25,30 +25,38 @@ import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import Counter from '@components/Counter';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { doc, collection, addDoc, getDoc } from 'firebase/firestore'
+import { db } from './firebase';
 
 function App() {
 	const [email, setEmail] = useState('');
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
+	const { handleSubmit } = useForm();
 
-	const sendData = async () => {
-		const res = await fetch('firebase_url', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-type': 'aplication/json',
-			},
-			body: JSON.stringify({ email }),
-		});
+	const onSubmit = handleSubmit(async () => {
 
-		const data = await res.json();
+		const docRef = doc(db, 'firsted_access', email);
+		const docSnap = await getDoc(docRef);
 
-		if (data.error) {
+		if (await docSnap.exists()) {
 			setError(true);
+			setTimeout(() => {
+				setError(false);
+			}, 5000)
 		} else {
-			setSuccess(true);
+			const ref = collection(db, 'firsted_access');
+			await addDoc(ref, { email })
+				.then(() => {
+					setSuccess(true);
+					setTimeout(() => {
+						setSuccess(false);
+					}, 5000);
+				})
+				.catch((error) => console.error('⛔ Error:', error));
 		}
-	};
+	});
 
 	return (
 		<>
@@ -170,19 +178,17 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<form
-						action="#access_to_app"
-						className="flex flex-col items-start gap-3">
+					<form onSubmit={onSubmit} className="flex flex-col items-start gap-3">
 						<label className="text-white">E-mail:</label>
 						<input
 							className="w-full rounded-full p-3"
 							required
 							type="email"
+							name='email'
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
 						<button
-							onClick={sendData}
 							className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
 							Enviar
 						</button>
