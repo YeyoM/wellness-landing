@@ -25,52 +25,29 @@ import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import Counter from '@components/Counter';
 import { useState } from 'react';
-import { HashLoader } from 'react-spinners';
-import { useForm } from 'react-hook-form';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from './firebase';
 
 function App() {
 	const [email, setEmail] = useState('');
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(false);
 
-	const getAll = async () => {
-		const querySnapshot = await getDocs(collection(db, 'firsted_access'));
-		let emailExists = false;
-		querySnapshot.forEach((doc) => {
-			if (doc.data().email === email) {
-				emailExists = true;
-				setError(true);
-				console.error('⛔ El correo electrónico ya se encuentra registrado.');
-				return;
-			}
+	const sendData = async () => {
+		const res = await fetch('firebase_url', {
+			headers: {
+				Accept: 'application/json',
+				'Content-type': 'aplication/json',
+			},
+			body: JSON.stringify({ email }),
 		});
-		return emailExists;
-	};
 
-	const { handleSubmit } = useForm();
+		const data = await res.json();
 
-	const onSubmit = handleSubmit(async () => {
-		setLoading(true);
-		setError(false);
-		setSuccess(false);
-		const emailExists = await getAll();
-
-		if (!emailExists) {
-			setError(false);
-			const ref = collection(db, 'firsted_access');
-			await addDoc(ref, { email })
-				.then(() => {
-					setSuccess(true);
-					console.log('✅ Solicitud enviada correctamente.');
-				})
-				.catch((error) => console.error('⛔ Error:', error));
+		if (data.error) {
+			setError(true);
+		} else {
+			setSuccess(true);
 		}
-		setLoading(false);
-	});
-
+	};
 
 	return (
 		<>
@@ -192,20 +169,21 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<form onSubmit={onSubmit} className="flex flex-col items-start gap-3">
+					<form
+						action="#access_to_app"
+						className="flex flex-col items-start gap-3">
 						<label className="text-white">E-mail:</label>
 						<input
 							className="w-full rounded-full p-3"
 							required
 							type="email"
-							name="email"
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
-						<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
-							{
-								loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'
-							}
+						<button
+							onClick={sendData}
+							className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+							Enviar
 						</button>
 						{error ? (
 							<p className="text-sm text-red-600 font-bold">
