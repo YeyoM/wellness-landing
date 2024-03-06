@@ -25,38 +25,52 @@ import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import Counter from '@components/Counter';
 import { useState } from 'react';
+import { HashLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
-import { doc, collection, addDoc, getDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 
 function App() {
 	const [email, setEmail] = useState('');
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
+
+	const getAll = async () => {
+		const querySnapshot = await getDocs(collection(db, 'firsted_access'));
+		let emailExists = false;
+		querySnapshot.forEach((doc) => {
+			if (doc.data().email === email) {
+				emailExists = true;
+				setError(true);
+				console.error('⛔ El correo electrónico ya se encuentra registrado.');
+				return;
+			}
+		});
+		return emailExists;
+	};
+
 	const { handleSubmit } = useForm();
 
 	const onSubmit = handleSubmit(async () => {
+		setLoading(true);
+		setError(false);
+		setSuccess(false);
+		const emailExists = await getAll();
 
-		const docRef = doc(db, 'firsted_access', email);
-		const docSnap = await getDoc(docRef);
-
-		if (await docSnap.exists()) {
-			setError(true);
-			setTimeout(() => {
-				setError(false);
-			}, 5000)
-		} else {
+		if (!emailExists) {
+			setError(false);
 			const ref = collection(db, 'firsted_access');
 			await addDoc(ref, { email })
 				.then(() => {
 					setSuccess(true);
-					setTimeout(() => {
-						setSuccess(false);
-					}, 5000);
+					console.log('✅ Solicitud enviada correctamente.');
 				})
 				.catch((error) => console.error('⛔ Error:', error));
 		}
+		setLoading(false);
 	});
+
 
 	return (
 		<>
@@ -184,13 +198,14 @@ function App() {
 							className="w-full rounded-full p-3"
 							required
 							type="email"
-							name='email'
+							name="email"
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
-						<button
-							className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
-							Enviar
+						<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+							{
+								loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'
+							}
 						</button>
 						{error ? (
 							<p className="text-sm text-red-600 font-bold">
