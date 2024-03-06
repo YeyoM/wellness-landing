@@ -35,6 +35,7 @@ function App() {
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const { handleSubmit } = useForm();
 
 	const getAll = async () => {
 		const querySnapshot = await getDocs(collection(db, 'firsted_access'));
@@ -49,8 +50,6 @@ function App() {
 		});
 		return emailExists;
 	};
-
-	const { handleSubmit } = useForm();
 
 	const onSubmit = handleSubmit(async () => {
 		setLoading(true);
