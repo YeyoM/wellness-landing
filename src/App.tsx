@@ -135,7 +135,7 @@ function App() {
 					/>
 				</div>
 			</div>
-			<div className="bg-primary flex justify-center gap-20 font-inter">
+			<div id="access_to_app" className="bg-primary flex justify-center gap-20 font-inter">
 				<form className="w-4/12 flex flex-col justify-center gap-3">
 					<h3 className="text-text_blue font-bold text-4xl">
 						Solo 50 lugares disponibles para la primera fase
@@ -164,7 +164,6 @@ function App() {
 				</div>
 			</div>
 			<div
-				id="access_to_app"
 				className="h-[38vh] bg-black text-white flex justify-center items-center">
 				<div className="w-8/12 flex justify-between items-center border-t pt-5 relative">
 					<div className="w-96 flex flex-col gap-3">
