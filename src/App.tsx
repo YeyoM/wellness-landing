@@ -27,8 +27,7 @@ import Counter from '@components/Counter';
 import { useState } from 'react';
 import { HashLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from './firebase';
+import { getAll, registerUser } from './RegisterBetaTester';
 
 function App() {
 	const [email, setEmail] = useState('');
@@ -37,35 +36,15 @@ function App() {
 	const [loading, setLoading] = useState(false);
 	const { handleSubmit } = useForm();
 
-	const getAll = async () => {
-		const querySnapshot = await getDocs(collection(db, 'firsted_access'));
-		let emailExists = false;
-		querySnapshot.forEach((doc) => {
-			if (doc.data().email === email) {
-				emailExists = true;
-				setError(true);
-				console.error('⛔ El correo electrónico ya se encuentra registrado.');
-				return;
-			}
-		});
-		return emailExists;
-	};
-
 	const onSubmit = handleSubmit(async () => {
 		setLoading(true);
 		setError(false);
 		setSuccess(false);
-		const emailExists = await getAll();
+		const emailExists = await getAll(email, setError);
 
 		if (!emailExists) {
 			setError(false);
-			const ref = collection(db, 'firsted_access');
-			await addDoc(ref, { email })
-				.then(() => {
-					setSuccess(true);
-					console.log('✅ Solicitud enviada correctamente.');
-				})
-				.catch((error) => console.error('⛔ Error:', error));
+			await registerUser(email, setSuccess);
 		}
 		setLoading(false);
 	});
