@@ -36,6 +36,12 @@ function App() {
 	const [loading, setLoading] = useState(false);
 	const { handleSubmit } = useForm();
 
+	const handleEmail = (text: string) => {
+		setSuccess(false);
+		setError(false);
+		setEmail(text);
+	}
+
 	const onSubmit = handleSubmit(async () => {
 		setLoading(true);
 		setError(false);
@@ -177,14 +183,18 @@ function App() {
 							required
 							type="email"
 							name="email"
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) => handleEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
-						<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
-							{
-								loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'
-							}
-						</button>
+						{success ? (
+							<button className="bg-white text-black px-10 py-3 rounded-2xl transition hover:bg-black hover:text-white">
+								Enviado!
+							</button>
+						) : (
+							<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+								{loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'}
+							</button>
+						)}
 						{error ? (
 							<p className="text-sm text-red-600 font-bold">
 								Parece ser que el correo que intentas enviar, ya ha sido
