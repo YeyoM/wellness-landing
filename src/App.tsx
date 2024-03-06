@@ -33,6 +33,7 @@ function App() {
 
 	const sendData = async () => {
 		const res = await fetch('firebase_url', {
+			method: 'POST',
 			headers: {
 				Accept: 'application/json',
 				'Content-type': 'aplication/json',
