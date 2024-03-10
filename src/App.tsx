@@ -169,7 +169,7 @@ function App() {
 			</div>
 			<div
 				id="access_to_app"
-				className="bg-primary flex items-center lg:justify-center flex-col lg:flex-row gap-8 lg:gap-20 pt-10 lg:py-0 font-inter">
+				className="bg-primary flex items-center lg:justify-center flex-col lg:flex-row gap-5 lg:gap-20 pt-10 lg:py-0 font-inter">
 				<div className="w-10/12 md:w-7/12 lg:w-4/12 flex flex-col justify-center gap-3">
 					<h3 className="text-text_blue font-bold text-4xl">
 						Solo 50 lugares disponibles para la primera fase
@@ -202,14 +202,14 @@ function App() {
 							</div>
 						)}
 						{error ? (
-							<p className="text-sm text-red-600 font-bold">
+							<p className="text-sm text-red-600 font-bold lg:w-auto w-full lg:text-left text-center">
 								Parece ser que el correo que intentas enviar, ya ha sido
 								registrado
 							</p>
 						) : (
 							<>
 								{success ? (
-									<p className="text-green-500 font-bold">
+									<p className="text-green-500 font-bold lg:w-auto w-full lg:text-left text-center">
 										¡Registro enviado correctamente!
 									</p>
 								) : (
