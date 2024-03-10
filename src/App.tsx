@@ -24,8 +24,31 @@ import Footer from '@components/Footer';
 import Button from '@components/Button';
 import HerramientasCardMini from '@components/HerramientasMini';
 import Counter from '@components/Counter';
+import { useState } from 'react';
 
 function App() {
+	const [email, setEmail] = useState('');
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+
+	const sendData = async () => {
+		const res = await fetch('firebase_url', {
+			headers: {
+				Accept: 'application/json',
+				'Content-type': 'aplication/json',
+			},
+			body: JSON.stringify({ email }),
+		});
+
+		const data = await res.json();
+
+		if (data.error) {
+			setError(true);
+		} else {
+			setSuccess(true);
+		}
+	};
+
 	return (
 		<>
 			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative font-inter">
@@ -135,8 +158,10 @@ function App() {
 					/>
 				</div>
 			</div>
-			<div className="bg-primary flex justify-center gap-20 font-inter">
-				<form className="w-4/12 flex flex-col justify-center gap-3">
+			<div
+				id="access_to_app"
+				className="bg-primary flex justify-center gap-20 font-inter">
+				<div className="w-4/12 flex flex-col justify-center gap-3">
 					<h3 className="text-text_blue font-bold text-4xl">
 						Solo 50 lugares disponibles para la primera fase
 					</h3>
@@ -144,16 +169,40 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<div className="flex flex-col gap-2">
+					<form
+						action="#access_to_app"
+						className="flex flex-col items-start gap-3">
 						<label className="text-white">E-mail:</label>
 						<input
-							className="rounded-full p-3"
+							className="w-full rounded-full p-3"
 							required
 							type="email"
+							onChange={(e) => setEmail(e.target.value)}
 							placeholder="fitnessjoe@example.com"
 						/>
-					</div>
-				</form>
+						<button
+							onClick={sendData}
+							className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+							Enviar
+						</button>
+						{error ? (
+							<p className="text-sm text-red-600 font-bold">
+								Parece ser que el correo que intentas enviar, ya ha sido
+								registrado
+							</p>
+						) : (
+							<>
+								{success ? (
+									<p className="text-green-500 font-bold">
+										¡Registro enviado correctamente!
+									</p>
+								) : (
+									''
+								)}
+							</>
+						)}
+					</form>
+				</div>
 				<div className="h-[65vh] flex gap-5">
 					<div className="flex items-start">
 						<img width={232} src={iphone_top} alt="iphone_top" />
@@ -163,9 +212,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div
-				id="access_to_app"
-				className="h-[38vh] bg-black text-white flex justify-center items-center">
+			<div className="h-[38vh] bg-black text-white flex justify-center items-center">
 				<div className="w-8/12 flex justify-between items-center border-t pt-5 relative">
 					<div className="w-96 flex flex-col gap-3">
 						<h3 className="text-4xl font-bold">
