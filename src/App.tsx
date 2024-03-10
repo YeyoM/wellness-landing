@@ -58,11 +58,11 @@ function App() {
 
 	return (
 		<>
-			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative font-inter">
-				<div className="flex justify-center items-start gap-20">
-					<div className="w-5/12 flex flex-col items-start gap-6 relative z-20">
-						<img className="w-9/12" src={logo} alt="logo" />
-						<h2 className="text-white font-bold text-6xl">
+			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative justify-center lg:justify-normal font-inter">
+				<div className="flex justify-center items-center lg:items-start flex-col gap-8 lg:gap-20 lg:flex-row">
+					<div className="lg:w-5/12 w-11/12 flex flex-col items-start gap-6 relative z-20">
+						<img className="w-64 lg:w-9/12" src={logo} alt="logo" />
+						<h2 className="text-white font-bold text-4xl lg:text-6xl">
 							La forma más sencilla de alcanzar tus objetivos
 						</h2>
 						<p className="text-[#9095A1]">
@@ -76,7 +76,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="bg-black w-full h-screen flex flex-col gap-16 justify-center items-center font-inter">
+			<div className="bg-black w-full lg:h-screen lg:py-0 py-14 flex flex-col gap-16 justify-center items-center font-inter">
 				<div className="flex flex-col gap-5 text-white text-center w-1/2">
 					<h2 className="font-bold text-5xl">100% personalizado</h2>
 					<p>
@@ -143,7 +143,7 @@ function App() {
 				</div>
 				<img width={520} src={phone_inclined} alt="phone inclined" />
 			</div>
-			<div className="h-72 bg-black flex justify-center items-center gap-24 text-white font-inter">
+			<div className="lg:h-72 py-10 lg:py-0 bg-black flex justify-center items-center gap-7 lg:gap-24 flex-col lg:flex-row text-white font-inter">
 				<div className="flex flex-col gap-3">
 					<h3 className="w-96 font-bold text-4xl">
 						Con <Counter n={200} />+ ejercicios diferentes
@@ -167,8 +167,8 @@ function App() {
 			</div>
 			<div
 				id="access_to_app"
-				className="bg-primary flex justify-center gap-20 font-inter">
-				<div className="w-4/12 flex flex-col justify-center gap-3">
+				className="bg-primary flex items-center lg:justify-center flex-col lg:flex-row gap-8 lg:gap-20 pt-10 lg:py-0 font-inter">
+				<div className="w-10/12 md:w-7/12 lg:w-4/12 flex flex-col justify-center gap-3">
 					<h3 className="text-text_blue font-bold text-4xl">
 						Solo 50 lugares disponibles para la primera fase
 					</h3>
@@ -187,13 +187,17 @@ function App() {
 							placeholder="fitnessjoe@example.com"
 						/>
 						{success ? (
-							<button className="bg-white text-black px-10 py-3 rounded-2xl transition hover:bg-black hover:text-white">
-								Enviado!
-							</button>
+							<div className="w-full flex justify-center lg:justify-normal">
+								<button className="bg-white text-black px-10 py-3 rounded-2xl transition hover:bg-black hover:text-white">
+									Enviado!
+								</button>
+							</div>
 						) : (
-							<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
-								{loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'}
-							</button>
+							<div className="w-full flex justify-center lg:justify-normal">
+								<button className="bg-black text-white px-10 py-3 rounded-2xl transition hover:bg-white hover:text-black">
+									{loading ? <HashLoader color={'#fff'} size={18} /> : 'Enviar'}
+								</button>
+							</div>
 						)}
 						{error ? (
 							<p className="text-sm text-red-600 font-bold">
@@ -213,7 +217,7 @@ function App() {
 						)}
 					</form>
 				</div>
-				<div className="h-[65vh] flex gap-5">
+				<div className="lg:h-[65vh] flex flex-col lg:flex-row gap-5">
 					<div className="flex items-start">
 						<img width={232} src={iphone_top} alt="iphone_top" />
 					</div>
@@ -223,7 +227,7 @@ function App() {
 				</div>
 			</div>
 			<div className="h-[38vh] bg-black text-white flex justify-center items-center">
-				<div className="w-8/12 flex justify-between items-center border-t pt-5 relative">
+				<div className="w-8/12 flex flex-col xl:flex-row xl:justify-between items-center xl:border-t xl:pt-5 relative gap-10 xl:gap-0">
 					<div className="w-96 flex flex-col gap-3">
 						<h3 className="text-4xl font-bold">
 							Buscas practicas profesionales
@@ -233,10 +237,11 @@ function App() {
 							fitness
 						</p>
 					</div>
-					<div className="relative right-24">
+					<div className='w-96 border-t'></div>
+					<div className="relative xl:right-24">
 						<Button>Sube tu CV aqui!</Button>
 						<img
-							className="absolute z-0 -top-3 scale-[1.8]"
+							className="absolute z-0 -top-3 scale-[1.5] xl:scale-[1.8]"
 							src={semicircle}
 							alt="semicircle"
 						/>
