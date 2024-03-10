@@ -52,9 +52,7 @@ function App() {
 			setError(false);
 			await registerUser(email, setSuccess);
 		}
-		setLoading(false);
-	});
-
+	};
 
 	return (
 		<>
@@ -176,7 +174,9 @@ function App() {
 						Ingresa tu correo para ser seleccionado y ser uno de los primeros en
 						tener acceso a la App{' '}
 					</p>
-					<form onSubmit={onSubmit} className="flex flex-col items-start gap-3">
+					<form
+						action="#access_to_app"
+						className="flex flex-col items-start gap-3">
 						<label className="text-white">E-mail:</label>
 						<input
 							className="w-full rounded-full p-3"
