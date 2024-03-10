@@ -58,7 +58,7 @@ function App() {
 
 	return (
 		<>
-			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full h-screen relative justify-center lg:justify-normal font-inter">
+			<div className="bg-[url('@assets/bg.jpg')] bg-no-repeat bg-cover bg-center flex items-center w-full lg:h-screen h-auto p-5 lg:p-0 relative justify-center lg:justify-normal font-inter">
 				<div className="flex justify-center items-center lg:items-start flex-col gap-8 lg:gap-20 lg:flex-row">
 					<div className="lg:w-5/12 w-11/12 flex flex-col items-start gap-6 relative z-20">
 						<img className="w-64 lg:w-9/12" src={logo} alt="logo" />
@@ -78,7 +78,7 @@ function App() {
 			</div>
 			<div className="bg-black w-full lg:h-screen lg:py-0 py-14 flex flex-col gap-16 justify-center items-center font-inter">
 				<div className="flex flex-col gap-5 text-white text-center w-1/2">
-					<h2 className="font-bold text-5xl">100% personalizado</h2>
+					<h2 className="font-bold text-3xl sm:text-5xl">100% personalizado</h2>
 					<p>
 						Cada persona tiene diferentes objetivos dentro del gimnasio es por
 						eso que las herramientas dentro de la app se adaptaran completamente
@@ -118,13 +118,15 @@ function App() {
 					/>
 				</div>
 			</div>
-			<div className="bg-black w-full h-screen flex justify-center items-center font-inter">
-				<div className="flex flex-col items-start gap-10">
-					<div className="flex flex-col gap-3">
-						<h2 className="text-white text-5xl font-bold w-4/6">
+			<div className="bg-black w-full py-16 h-auto xl:h-screen flex xl:flex-row flex-col-reverse xl:gap-0 gap-14 justify-center items-center font-inter">
+				<div className="flex flex-col items-center xl:items-start gap-10">
+					<div className="flex flex-col xl:items-start items-center gap-3">
+						<h2 className="text-white text-center xl:text-left text-5xl font-bold w-4/6">
 							Comparte tus logros en tu perfil
 						</h2>
-						<p className="text-[#9095A1]">Inspira a otros usuarios</p>
+						<p className="text-[#9095A1] text-center xl:text-left">
+							Inspira a otros usuarios
+						</p>
 					</div>
 					<img
 						className="transition hover:scale-105"
@@ -132,7 +134,7 @@ function App() {
 						alt="maxes"
 						width={350}
 					/>
-					<div className="w-10/12 flex justify-end">
+					<div className="w-10/12 flex justify-center xl:justify-end">
 						<img
 							className="transition hover:scale-105"
 							src={chasing}
@@ -141,11 +143,11 @@ function App() {
 						/>
 					</div>
 				</div>
-				<img width={520} src={phone_inclined} alt="phone inclined" />
+				<img className='w-80 xl:w-[520px]' src={phone_inclined} alt="phone inclined" />
 			</div>
 			<div className="lg:h-72 py-10 lg:py-0 bg-black flex justify-center items-center gap-7 lg:gap-24 flex-col lg:flex-row text-white font-inter">
 				<div className="flex flex-col gap-3">
-					<h3 className="w-96 font-bold text-4xl">
+					<h3 className="lg:w-96 font-bold text-2xl lg:text-4xl">
 						Con <Counter n={200} />+ ejercicios diferentes
 					</h3>
 					<p>Crea la rutina perfecta para ti</p>
@@ -226,10 +228,10 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="h-[38vh] bg-black text-white flex justify-center items-center">
+			<div className="h-[60vh] xl:h-[38vh] bg-black text-white flex justify-center items-center">
 				<div className="w-8/12 flex flex-col xl:flex-row xl:justify-between items-center xl:border-t xl:pt-5 relative gap-10 xl:gap-0">
-					<div className="w-96 flex flex-col gap-3">
-						<h3 className="text-4xl font-bold">
+					<div className="w-96 flex flex-col gap-3 px-5 xl:px-0">
+						<h3 className="text-3xl xl:text-4xl font-bold">
 							Buscas practicas profesionales
 						</h3>
 						<p>
@@ -237,7 +239,7 @@ function App() {
 							fitness
 						</p>
 					</div>
-					<div className='w-96 border-t'></div>
+					<div className="xl:w-0 w-96 border-t"></div>
 					<div className="relative xl:right-24">
 						<Button>Sube tu CV aqui!</Button>
 						<img
