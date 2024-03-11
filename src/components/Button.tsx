@@ -8,9 +8,12 @@ const Button = ({ children, redirect }: ButtonI) => {
 			{children}
 		</a>
 	) : (
-		<button className="text-white text-2xl bg-primary px-4 py-3 font-bold rounded hover:bg-[#1159b8] transition relative z-10">
+		<a
+			href="https://forms.gle/W11vRPKh5SUCGvpKA"
+			target='_blank'
+			className="text-white text-2xl bg-primary px-4 py-3 font-bold rounded hover:bg-[#1159b8] transition relative z-10">
 			{children}
-		</button>
+		</a>
 	);
 };
 
