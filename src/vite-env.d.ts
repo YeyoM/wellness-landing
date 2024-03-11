@@ -19,4 +19,6 @@ export interface CounterI {
 
 export interface BtnRptaI {
 	text: string;
+	value: string;
+	set: React.Dispatch<React.SetStateAction<string>>;
 }

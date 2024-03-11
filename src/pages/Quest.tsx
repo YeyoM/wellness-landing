@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BtnRpta from '@components/BtnRpta';
-import left from '@assets/svg/left.svg';
-import right from '@assets/svg/right.svg';
+import left_icon from '@assets/svg/left.svg';
+import right_icon from '@assets/svg/right.svg';
 
 const Quest = () => {
 	const { state } = useLocation();
+	const [ favFeature, setFavFeature ] = useState('');
+	const [so, setSO] = useState('');
+	const [rateRutina, setRateRutina] = useState('');
+	const [motivation, setMotivation] = useState('');
 
 	if (!state || state.email === null) {
 		location.href = '/';
@@ -27,26 +31,42 @@ const Quest = () => {
 	};
 
 	return (
-		<div className="bg-primary w-full h-screen flex justify-between p-14 items-center font-inter">
+		<div className="bg-primary relative w-full h-screen flex justify-between p-5 sm:p-14 items-center font-inter">
 			<button onClick={decrementIndex}>
 				<img
-					className="bg-white px-3 py-4 rounded-full transition hover:bg-[#ddd]"
-					src={left}
+					className="w-10 top-[10vh] left-5 md:left-0 md:top-0 md:w-14 absolute md:relative bg-white px-3 py-4 rounded-full transition hover:bg-[#ddd]"
+					src={left_icon}
 					alt="left-icon"
 				/>
 			</button>
 			{index === 1 ? (
 				<div className="flex flex-col items-center gap-10 font-bold">
 					<p>{index}/4 </p>
-					<h2 className="text-4xl">
+					<h2 className="text-base text-center sm:text-left sm:text-lg lg:text-3xl xl:text-4xl">
 						¿Que feature de Wellness App te gusto más?
 					</h2>
-					<div className="flex flex-wrap justify-center gap-5 w-9/12">
-						<BtnRpta text="Crowdmetwer" />
-						<BtnRpta text="Rutinas Personalizadas" />
-						<BtnRpta text="Reportes de progreso" />
-						<BtnRpta text="Ver el progreso de mis amigos" />
-						<BtnRpta text="Otro" />
+					<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-5 w-full sm:w-9/12">
+						<BtnRpta
+							value={favFeature}
+							set={setFavFeature}
+							text="Crowdmetwer"
+						/>
+						<BtnRpta
+							value={favFeature}
+							set={setFavFeature}
+							text="Rutinas Personalizadas"
+						/>
+						<BtnRpta
+							value={favFeature}
+							set={setFavFeature}
+							text="Reportes de progreso"
+						/>
+						<BtnRpta
+							value={favFeature}
+							set={setFavFeature}
+							text="Ver el progreso de mis amigos"
+						/>
+						<BtnRpta value={favFeature} set={setFavFeature} text="Otro" />
 					</div>
 				</div>
 			) : (
@@ -55,13 +75,13 @@ const Quest = () => {
 			{index === 2 ? (
 				<div className="flex flex-col items-center gap-10 font-bold">
 					<p>{index}/4 </p>
-					<h2 className="text-4xl">
+					<h2 className="text-base text-center sm:text-left sm:text-lg lg:text-3xl xl:text-4xl">
 						¿En que sistema operativo utilizaras Wellness App?
 					</h2>
-					<div className="flex flex-wrap justify-center gap-5 w-9/12">
-						<BtnRpta text="iOS" />
-						<BtnRpta text="Android" />
-						<BtnRpta text="Otro" />
+					<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-5 w-9/12">
+						<BtnRpta value={so} set={setSO} text="iOS" />
+						<BtnRpta value={so} set={setSO} text="Android" />
+						<BtnRpta value={so} set={setSO} text="Otro" />
 					</div>
 				</div>
 			) : (
@@ -70,13 +90,31 @@ const Quest = () => {
 			{index === 3 ? (
 				<div className="flex flex-col items-center gap-10 font-bold">
 					<p>{index}/4 </p>
-					<h2 className="text-4xl">¿Como calificarías tu rutina actual?</h2>
-					<div className="flex flex-wrap justify-center gap-5 w-9/12">
-						<BtnRpta text="11/10" />
-						<BtnRpta text="Podria mejorar" />
-						<BtnRpta text="Hago la que me dieron en el gym" />
-						<BtnRpta text="No tengo rutina" />
-						<BtnRpta text="No me gusta" />
+					<h2 className="text-base text-center sm:text-left sm:text-lg lg:text-3xl xl:text-4xl">
+						¿Como calificarías tu rutina actual?
+					</h2>
+					<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-5 w-9/12">
+						<BtnRpta value={rateRutina} set={setRateRutina} text="11/10" />
+						<BtnRpta
+							value={rateRutina}
+							set={setRateRutina}
+							text="Podria mejorar"
+						/>
+						<BtnRpta
+							value={rateRutina}
+							set={setRateRutina}
+							text="Hago la que me dieron en el gym"
+						/>
+						<BtnRpta
+							value={rateRutina}
+							set={setRateRutina}
+							text="No tengo rutina"
+						/>
+						<BtnRpta
+							value={rateRutina}
+							set={setRateRutina}
+							text="No me gusta"
+						/>
 					</div>
 				</div>
 			) : (
@@ -85,12 +123,18 @@ const Quest = () => {
 			{index === 4 ? (
 				<div className="flex flex-col items-center gap-10 font-bold">
 					<p>{index}/4 </p>
-					<h2 className="text-4xl">¿Que te motiva a ir al gimnasio?</h2>
-					<div className="flex flex-wrap justify-center gap-5 w-9/12">
-						<BtnRpta text="Salud" />
-						<BtnRpta text="Estetica" />
-						<BtnRpta text="Mi gym crush" />
-						<BtnRpta text="Fuerza" />
+					<h2 className="text-base text-center sm:text-left sm:text-lg lg:text-3xl xl:text-4xl">
+						¿Que te motiva a ir al gimnasio?
+					</h2>
+					<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-5 w-9/12">
+						<BtnRpta value={motivation} set={setMotivation} text="Salud" />
+						<BtnRpta value={motivation} set={setMotivation} text="Estetica" />
+						<BtnRpta
+							value={motivation}
+							set={setMotivation}
+							text="Mi gym crush"
+						/>
+						<BtnRpta value={motivation} set={setMotivation} text="Fuerza" />
 					</div>
 				</div>
 			) : (
@@ -98,8 +142,8 @@ const Quest = () => {
 			)}
 			<button onClick={incrementIndex}>
 				<img
-					className="bg-white px-3 py-4 rounded-full transition hover:bg-[#ddd]"
-					src={right}
+					className="w-10 top-[10vh] right-5 md:right-0 md:top-0 md:w-14 absolute md:relative bg-white px-3 py-4 rounded-full transition hover:bg-[#ddd]"
+					src={right_icon}
 					alt="right-icon"
 				/>
 			</button>

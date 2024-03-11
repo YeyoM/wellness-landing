@@ -1,9 +1,15 @@
 import { BtnRptaI } from "../vite-env";
 
-const BtnRpta = ({ text }: BtnRptaI) => {
+const BtnRpta = ({ value, set, text }: BtnRptaI) => {
     return (
-        <button className="bg-white rounded-2xl p-3 font-sans">{ text }</button>
-    )
+			<button
+				onClick={() => set(text)}
+				className={`${
+					value === text ? 'text-white bg-[#105ec4]' : 'text-black bg-white'
+				} rounded-2xl p-3 font-sans`}>
+				{text}
+			</button>
+		);
 }
 
 export default BtnRpta;
