@@ -10,6 +10,12 @@ export default {
 			},
 			fontFamily: {
 				inter: 'Inter Variable',
+				sans: [
+					'open-sans-hebrew-condensed',
+					'Helvetica',
+					'Arial',
+					'sans-serif',
+				],
 			},
 		},
 	},

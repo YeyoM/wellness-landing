@@ -28,6 +28,7 @@ import { useState } from 'react';
 import { HashLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
 import { getAll, registerUser } from '../RegisterBetaTester';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 	const [email, setEmail] = useState('');
@@ -35,6 +36,7 @@ function Home() {
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const { handleSubmit } = useForm();
+	const navigate = useNavigate();
 
 	const handleEmail = (text: string) => {
 		setSuccess(false);
@@ -51,7 +53,12 @@ function Home() {
 		if (!emailExists) {
 			setError(false);
 			await registerUser(email, setSuccess);
+			setTimeout(() => {
+				navigate('/encuesta', { state: { email } });
+			}, 1000);
 		}
+
+		setLoading(false);
 	});
 
 	return (

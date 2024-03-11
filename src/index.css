@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
+
+@font-face {
+    font-family: 'open-sans-hebrew-condensed';
+    src: local('open-sans-hebrew-condensed'), url(./assets/fonts/open-sans-hebrew-condensed.ttf) format('ttf');
+}
+
 @tailwind utilities;

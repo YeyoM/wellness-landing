@@ -23,6 +23,7 @@ export const registerUser = async (
 	setSuccess: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
 	const ref = collection(db, 'users-beta');
+
 	await addDoc(ref, { email })
 		.then(() => {
 			setSuccess(true);

@@ -16,3 +16,7 @@ export interface CounterI {
 	n: number;
 	className?: string;
 }
+
+export interface BtnRptaI {
+	text: string;
+}
