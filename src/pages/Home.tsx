@@ -114,7 +114,7 @@ function Home() {
 					<HerramientasCardMini
 						icon={icon_5}
 						title="Seguimiento Integral"
-						description="Registra tu actividad, alimentación y sueño en un solo lugar para un análisis completo."
+						description="Visualiza tu progreso como nunca antes con reportes detallados de cada entrenamiento."
 					/>
 					<HerramientasCardMini
 						icon={icon_6}
@@ -156,8 +156,8 @@ function Home() {
 			</div>
 			<div className="lg:h-72 py-10 lg:py-0 bg-black flex justify-center items-center gap-7 lg:gap-24 flex-col lg:flex-row text-white font-inter">
 				<div className="flex flex-col gap-3">
-					<h3 className="lg:w-96 font-bold text-2xl lg:text-4xl">
-						Con <Counter n={200} />+ ejercicios diferentes
+					<h3 className="lg:w-96 font-bold text-xl lg:text-4xl">
+						Con <Counter n={2000} />+ ejercicios diferentes
 					</h3>
 					<p>Crea la rutina perfecta para ti</p>
 				</div>
