@@ -52,9 +52,9 @@ function Home() {
 
 		if (!emailExists) {
 			setError(false);
-			await registerUser(email, setSuccess);
+			const id = await registerUser(email, setSuccess);
 			setTimeout(() => {
-				navigate('/encuesta', { state: { email } });
+				navigate('/encuesta', { state: { id, email } });
 			}, 1000);
 		}
 
