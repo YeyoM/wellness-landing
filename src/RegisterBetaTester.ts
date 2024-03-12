@@ -22,11 +22,16 @@ export const registerUser = async (
 	email: string,
 	setSuccess: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-	const ref = collection(db, 'users-beta');
-	await addDoc(ref, { email })
-		.then(() => {
-			setSuccess(true);
-			console.log('✅ Solicitud enviada correctamente.');
-		})
-		.catch((error) => console.error('⛔ Error:', error));
+	try {
+		const ref = collection(db, 'users-beta');
+		const docRef = await addDoc(ref, { email });
+
+		setSuccess(true);
+		console.log('✅ Solicitud enviada correctamente.');
+
+		return docRef.id;
+	} catch (error) {
+		console.error('⛔ Error:', error);
+		throw error;
+	}
 };
