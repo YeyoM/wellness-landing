@@ -22,6 +22,7 @@ export interface BtnRptaI {
 	value: string;
 	set: React.Dispatch<React.SetStateAction<string>>;
 }
+
 export interface FavFeatureStatsI {
 	Crowdmetwer: number;
 	'Rutinas Personalizadas': number;

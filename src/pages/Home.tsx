@@ -29,6 +29,7 @@ import { HashLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
 import { getAll, registerUser } from '../RegisterBetaTester';
 import { useNavigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 function Home() {
 	const [email, setEmail] = useState('');
@@ -260,6 +261,7 @@ function Home() {
 				</div>
 			</div>
 			<Footer />
+			<Analytics />
 		</>
 	);
 }
