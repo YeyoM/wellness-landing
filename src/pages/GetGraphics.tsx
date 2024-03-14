@@ -19,36 +19,34 @@ import {
 } from 'firebase/firestore';
 
 import { db } from '../firebaseConfig';
+import { FavFeatureStatsI, MotivationStatsI, RateRutinaStatsI, SoStatsI } from '../vite-env';
 
 const GetGraphics = () => {
 	const [type, setType] = useState('');
 	const [data, setData] = useState<DocumentData[] | undefined>(undefined);
 
-	const favFeatureStats = [
-		{ Crowdmetwer: 0 },
-		{ 'Rutinas Personalizadas': 0 },
-		{ 'Reportes de progreso': 0 },
-		{ 'Ver el progreso de mis amigos': 0 },
+	const favFeatureStats: FavFeatureStatsI[] = [
+		{
+			Crowdmetwer: 0,
+			'Rutinas Personalizadas': 0,
+			'Reportes de progreso': 0,
+			'Ver el progreso de mis amigos': 0,
+		},
 	];
 
-	const soStats = [
-		{ iOS: 0 },
-		{ Android: 0 },
-		{ Otro: 0 }
+	const soStats: SoStatsI[] = [{ iOS: 0, Android: 0, Otro: 0 }];
+
+	const motivationStats: MotivationStatsI[] = [
+		{ Salud: 0, Estetica: 0, 'Mi gym crush': 0, Fuerza: 0 },
 	];
 
-	const motivationStats = [
-		{ Salud: 0 },
-		{ Estetica: 0 },
-		{ 'Mi gym crush': 0 },
-		{ Fuerza: 0 },
-	];
-
-	const rateRutinaStats = [
-		{ 'Podria mejorar': 0 },
-		{ 'Hago la que me dieron en el gym': 0 },
-		{ 'No tengo rutina': 0 },
-		{ 'No me gusta': 0 },
+	const rateRutinaStats: RateRutinaStatsI[] = [
+		{
+			'Podria mejorar': 0,
+			'Hago la que me dieron en el gym': 0,
+			'No tengo rutina': 0,
+			'No me gusta': 0,
+		},
 	];
 
 	const getData = async () => {
@@ -62,25 +60,25 @@ const GetGraphics = () => {
 				const feature = prop.favFeature;
 				const index = favFeatureStats.findIndex((item) => feature in item);
 				if (index !== -1) {
-					favFeatureStats[index][feature]++;
+					favFeatureStats[index][feature as keyof FavFeatureStatsI]++;
 				}
 			} else if (type === 'so') {
 				const so = prop.so;
 				const index = soStats.findIndex((item) => so in item);
 				if (index !== -1) {
-					soStats[index][so]++;
+					soStats[index][so as keyof SoStatsI]++;
 				}
 			} else if (type === 'motivation') {
 				const motivation = prop.motivation;
 				const index = motivationStats.findIndex((item) => motivation in item);
 				if (index !== -1) {
-					motivationStats[index][motivation]++;
+					motivationStats[index][motivation as keyof MotivationStatsI]++;
 				}
 			} else if (type === 'rateRutina') {
 				const rateRutina = prop.rateRutina;
 				const index = rateRutinaStats.findIndex((item) => rateRutina in item);
 				if (index !== -1) {
-					rateRutinaStats[index][rateRutina]++;
+					rateRutinaStats[index][rateRutina as keyof RateRutinaStatsI]++;
 				}
 			}
 		});
@@ -122,63 +120,63 @@ const GetGraphics = () => {
 					</datalist>
 					<button onClick={() => setType('')}>❌</button>
 				</div>
-					<ResponsiveContainer width="100%" aspect={2}>
-						<BarChart
-							data={data}
-							width={500}
-							height={300}
-							margin={{
-								top: 5,
-								right: 30,
-								left: 20,
-								bottom: 5,
-							}}>
-							<CartesianGrid strokeDasharray="4 1 2" />
-							<XAxis dataKey='simple_datakey' />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							{type === 'favFeature' ? (
-								<>
-									<Bar dataKey="Crowdmetwer" fill="#f00" />
-									<Bar dataKey="Rutinas Personalizadas" fill="#0a0" />
-									<Bar dataKey="Reportes de progreso" fill="#00f" />
-									<Bar dataKey="Ver el progreso de mis amigos" fill="#f0f" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'motivation' ? (
-								<>
-									<Bar dataKey="Salud" fill="#0a0" />
-									<Bar dataKey="Estetica" fill="#00f" />
-									<Bar dataKey="Mi gym crush" fill="#f0f" />
-									<Bar dataKey="Fuerza" fill="#a00" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'so' ? (
-								<>
-									<Bar dataKey="Android" fill="#0a0" />
-									<Bar dataKey="iOS" fill="#00f" />
-									<Bar dataKey="Otro" fill="#000" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'rateRutina' ? (
-								<>
-									<Bar dataKey="Podria mejorar" fill="#0a0" />
-									<Bar dataKey="Hago la que me dieron en el gym" fill="#f00" />
-									<Bar dataKey="No tengo rutina" fill="#00f" />
-									<Bar dataKey="No me gusta" fill="#000" />
-								</>
-							) : (
-								''
-							)}
-						</BarChart>
-					</ResponsiveContainer>
+				<ResponsiveContainer width="100%" aspect={2}>
+					<BarChart
+						data={data}
+						width={500}
+						height={300}
+						margin={{
+							top: 5,
+							right: 30,
+							left: 20,
+							bottom: 5,
+						}}>
+						<CartesianGrid strokeDasharray="4 1 2" />
+						<XAxis dataKey="simple_datakey" />
+						<YAxis />
+						<Tooltip />
+						<Legend />
+						{type === 'favFeature' ? (
+							<>
+								<Bar dataKey="Crowdmetwer" fill="#f00" />
+								<Bar dataKey="Rutinas Personalizadas" fill="#0a0" />
+								<Bar dataKey="Reportes de progreso" fill="#00f" />
+								<Bar dataKey="Ver el progreso de mis amigos" fill="#f0f" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'motivation' ? (
+							<>
+								<Bar dataKey="Salud" fill="#0a0" />
+								<Bar dataKey="Estetica" fill="#00f" />
+								<Bar dataKey="Mi gym crush" fill="#f0f" />
+								<Bar dataKey="Fuerza" fill="#a00" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'so' ? (
+							<>
+								<Bar dataKey="Android" fill="#0a0" />
+								<Bar dataKey="iOS" fill="#00f" />
+								<Bar dataKey="Otro" fill="#000" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'rateRutina' ? (
+							<>
+								<Bar dataKey="Podria mejorar" fill="#0a0" />
+								<Bar dataKey="Hago la que me dieron en el gym" fill="#f00" />
+								<Bar dataKey="No tengo rutina" fill="#00f" />
+								<Bar dataKey="No me gusta" fill="#000" />
+							</>
+						) : (
+							''
+						)}
+					</BarChart>
+				</ResponsiveContainer>
 			</div>
 		</div>
 	);
