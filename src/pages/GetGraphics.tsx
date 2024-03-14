@@ -8,7 +8,6 @@ import {
 	Tooltip,
 	XAxis,
 	YAxis,
-	Brush,
 } from 'recharts';
 import {
 	collection,
@@ -18,7 +17,6 @@ import {
 	where,
 } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { toast, ToastContainer } from 'react-toastify';
 
 const GetGraphics = () => {
 	const [type, setType] = useState('favFeature');
@@ -188,7 +186,6 @@ const GetGraphics = () => {
 					</ResponsiveContainer>
 				)}
 			</div>
-			<ToastContainer />
 		</div>
 	);
 };
