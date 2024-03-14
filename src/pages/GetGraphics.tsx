@@ -9,6 +9,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts';
+
 import {
 	collection,
 	getDocs,
@@ -16,37 +17,36 @@ import {
 	query,
 	where,
 } from 'firebase/firestore';
+
 import { db } from '../firebaseConfig';
+import { FavFeatureStatsI, MotivationStatsI, RateRutinaStatsI, SoStatsI } from '../vite-env';
 
 const GetGraphics = () => {
 	const [type, setType] = useState('');
 	const [data, setData] = useState<DocumentData[] | undefined>(undefined);
 
-	const favFeatureStats = [
-		{ Crowdmetwer: 0 },
-		{ 'Rutinas Personalizadas': 0 },
-		{ 'Reportes de progreso': 0 },
-		{ 'Ver el progreso de mis amigos': 0 },
+	const favFeatureStats: FavFeatureStatsI[] = [
+		{
+			Crowdmetwer: 0,
+			'Rutinas Personalizadas': 0,
+			'Reportes de progreso': 0,
+			'Ver el progreso de mis amigos': 0,
+		},
 	];
 
-	const soStats = [
-		{ iOS: 0 },
-		{ Android: 0 },
-		{ Otro: 0 }
+	const soStats: SoStatsI[] = [{ iOS: 0, Android: 0, Otro: 0 }];
+
+	const motivationStats: MotivationStatsI[] = [
+		{ Salud: 0, Estetica: 0, 'Mi gym crush': 0, Fuerza: 0 },
 	];
 
-	const motivationStats = [
-		{ Salud: 0 },
-		{ Estetica: 0 },
-		{ 'Mi gym crush': 0 },
-		{ Fuerza: 0 },
-	];
-
-	const rateRutinaStats = [
-		{ 'Podria mejorar': 0 },
-		{ 'Hago la que me dieron en el gym': 0 },
-		{ 'No tengo rutina': 0 },
-		{ 'No me gusta': 0 },
+	const rateRutinaStats: RateRutinaStatsI[] = [
+		{
+			'Podria mejorar': 0,
+			'Hago la que me dieron en el gym': 0,
+			'No tengo rutina': 0,
+			'No me gusta': 0,
+		},
 	];
 
 	const getData = async () => {
@@ -60,25 +60,25 @@ const GetGraphics = () => {
 				const feature = prop.favFeature;
 				const index = favFeatureStats.findIndex((item) => feature in item);
 				if (index !== -1) {
-					favFeatureStats[index][feature]++;
+					favFeatureStats[index][feature as keyof FavFeatureStatsI]++;
 				}
 			} else if (type === 'so') {
 				const so = prop.so;
 				const index = soStats.findIndex((item) => so in item);
 				if (index !== -1) {
-					soStats[index][so]++;
+					soStats[index][so as keyof SoStatsI]++;
 				}
 			} else if (type === 'motivation') {
 				const motivation = prop.motivation;
 				const index = motivationStats.findIndex((item) => motivation in item);
 				if (index !== -1) {
-					motivationStats[index][motivation]++;
+					motivationStats[index][motivation as keyof MotivationStatsI]++;
 				}
 			} else if (type === 'rateRutina') {
 				const rateRutina = prop.rateRutina;
 				const index = rateRutinaStats.findIndex((item) => rateRutina in item);
 				if (index !== -1) {
-					rateRutinaStats[index][rateRutina]++;
+					rateRutinaStats[index][rateRutina as keyof RateRutinaStatsI]++;
 				}
 			}
 		});
