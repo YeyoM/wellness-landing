@@ -120,63 +120,63 @@ const GetGraphics = () => {
 					</datalist>
 					<button onClick={() => setType('')}>❌</button>
 				</div>
-					<ResponsiveContainer width="100%" aspect={2}>
-						<BarChart
-							data={data}
-							width={500}
-							height={300}
-							margin={{
-								top: 5,
-								right: 30,
-								left: 20,
-								bottom: 5,
-							}}>
-							<CartesianGrid strokeDasharray="4 1 2" />
-							<XAxis dataKey='simple_datakey' />
-							<YAxis />
-							<Tooltip />
-							<Legend />
-							{type === 'favFeature' ? (
-								<>
-									<Bar dataKey="Crowdmetwer" fill="#f00" />
-									<Bar dataKey="Rutinas Personalizadas" fill="#0a0" />
-									<Bar dataKey="Reportes de progreso" fill="#00f" />
-									<Bar dataKey="Ver el progreso de mis amigos" fill="#f0f" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'motivation' ? (
-								<>
-									<Bar dataKey="Salud" fill="#0a0" />
-									<Bar dataKey="Estetica" fill="#00f" />
-									<Bar dataKey="Mi gym crush" fill="#f0f" />
-									<Bar dataKey="Fuerza" fill="#a00" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'so' ? (
-								<>
-									<Bar dataKey="Android" fill="#0a0" />
-									<Bar dataKey="iOS" fill="#00f" />
-									<Bar dataKey="Otro" fill="#000" />
-								</>
-							) : (
-								''
-							)}
-							{type === 'rateRutina' ? (
-								<>
-									<Bar dataKey="Podria mejorar" fill="#0a0" />
-									<Bar dataKey="Hago la que me dieron en el gym" fill="#f00" />
-									<Bar dataKey="No tengo rutina" fill="#00f" />
-									<Bar dataKey="No me gusta" fill="#000" />
-								</>
-							) : (
-								''
-							)}
-						</BarChart>
-					</ResponsiveContainer>
+				<ResponsiveContainer width="100%" aspect={2}>
+					<BarChart
+						data={data}
+						width={500}
+						height={300}
+						margin={{
+							top: 5,
+							right: 30,
+							left: 20,
+							bottom: 5,
+						}}>
+						<CartesianGrid strokeDasharray="4 1 2" />
+						<XAxis dataKey="simple_datakey" />
+						<YAxis />
+						<Tooltip />
+						<Legend />
+						{type === 'favFeature' ? (
+							<>
+								<Bar dataKey="Crowdmetwer" fill="#f00" />
+								<Bar dataKey="Rutinas Personalizadas" fill="#0a0" />
+								<Bar dataKey="Reportes de progreso" fill="#00f" />
+								<Bar dataKey="Ver el progreso de mis amigos" fill="#f0f" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'motivation' ? (
+							<>
+								<Bar dataKey="Salud" fill="#0a0" />
+								<Bar dataKey="Estetica" fill="#00f" />
+								<Bar dataKey="Mi gym crush" fill="#f0f" />
+								<Bar dataKey="Fuerza" fill="#a00" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'so' ? (
+							<>
+								<Bar dataKey="Android" fill="#0a0" />
+								<Bar dataKey="iOS" fill="#00f" />
+								<Bar dataKey="Otro" fill="#000" />
+							</>
+						) : (
+							''
+						)}
+						{type === 'rateRutina' ? (
+							<>
+								<Bar dataKey="Podria mejorar" fill="#0a0" />
+								<Bar dataKey="Hago la que me dieron en el gym" fill="#f00" />
+								<Bar dataKey="No tengo rutina" fill="#00f" />
+								<Bar dataKey="No me gusta" fill="#000" />
+							</>
+						) : (
+							''
+						)}
+					</BarChart>
+				</ResponsiveContainer>
 			</div>
 		</div>
 	);
