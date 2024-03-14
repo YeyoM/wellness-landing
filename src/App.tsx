@@ -12,7 +12,7 @@ function App() {
 				<Route index path="/" element={<Home />} />
 				<Route path="/encuesta" element={<Quest />} />
 				<Route path="/thanks-for-reply" element={<Thanks />} />
-				<Route path="/getAll" element={<GetGraphics />} />
+				<Route path="/resultados" element={<GetGraphics />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>

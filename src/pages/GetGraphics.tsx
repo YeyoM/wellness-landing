@@ -19,9 +19,8 @@ import {
 import { db } from '../firebaseConfig';
 
 const GetGraphics = () => {
-	const [type, setType] = useState('favFeature');
+	const [type, setType] = useState('');
 	const [data, setData] = useState<DocumentData[] | undefined>(undefined);
-	const [loading, setLoading] = useState(false);
 
 	const favFeatureStats = [
 		{ Crowdmetwer: 0 },
@@ -51,7 +50,6 @@ const GetGraphics = () => {
 	];
 
 	const getData = async () => {
-		setLoading(true);
 		const usersRef = collection(db, 'users-beta');
 		const q = query(usersRef, where('favFeature', '!=', false));
 		const capitalNotFalseRes = await getDocs(q);
@@ -94,8 +92,6 @@ const GetGraphics = () => {
 		} else if (type === 'rateRutina') {
 			setData(rateRutinaStats);
 		}
-
-		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -124,9 +120,6 @@ const GetGraphics = () => {
 					</datalist>
 					<button onClick={() => setType('')}>❌</button>
 				</div>
-				{loading ? (
-					<h2>Cargando...</h2>
-				) : (
 					<ResponsiveContainer width="100%" aspect={2}>
 						<BarChart
 							data={data}
@@ -184,7 +177,6 @@ const GetGraphics = () => {
 							)}
 						</BarChart>
 					</ResponsiveContainer>
-				)}
 			</div>
 		</div>
 	);
