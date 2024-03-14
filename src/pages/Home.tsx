@@ -135,14 +135,14 @@ function Home() {
 						</p>
 					</div>
 					<img
-						className="transition hover:scale-105"
+						className="transition hover:sm:scale-105"
 						src={maxes}
 						alt="maxes"
 						width={350}
 					/>
 					<div className="w-10/12 flex justify-center xl:justify-end">
 						<img
-							className="transition hover:scale-105"
+							className="transition hover:sm:scale-105"
 							src={chasing}
 							alt="chasing"
 							width={350}
