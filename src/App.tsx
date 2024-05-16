@@ -4,6 +4,7 @@ import Quest from './pages/Quest';
 import Thanks from './pages/Thanks';
 import ErrorPage from './pages/Error';
 import GetGraphics from './pages/GetGraphics';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/encuesta" element={<Quest />} />
 				<Route path="/thanks-for-reply" element={<Thanks />} />
 				<Route path="/resultados" element={<GetGraphics />} />
+				<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
