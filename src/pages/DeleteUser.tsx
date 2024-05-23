@@ -7,11 +7,13 @@ import {
 	where,
 	getDocs,
 } from 'firebase/firestore';
+import { HashLoader } from 'react-spinners';
 
 const DeleteUser = () => {
 	const [confirm, setConfirm] = useState(false);
 	const [userEmail, setUserEmail] = useState('');
-    const [userDelete, setUserDelete] = useState(false);
+	const [userDelete, setUserDelete] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const returnHome = () => {
 		location.href = '/';
@@ -22,6 +24,7 @@ const DeleteUser = () => {
 	};
 
 	const removeUser = async () => {
+		setLoading(true);
 		const querySnapshot = await getDocs(
 			query(collection(db, 'users'), where('email', '==', userEmail))
 		);
@@ -29,12 +32,13 @@ const DeleteUser = () => {
 		if (!querySnapshot.empty) {
 			const userDoc = querySnapshot.docs[0];
 			await deleteDoc(userDoc.ref);
-            setUserDelete(true);
+			setUserDelete(true);
 		} else {
 			console.log(
 				'No se encontró ningún usuario con el correo electrónico proporcionado'
 			);
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -65,7 +69,7 @@ const DeleteUser = () => {
 				) : (
 					<section className={`${confirm ? '' : 'hidden'} flex flex-col gap-2`}>
 						<p className="text-2xl">Escriba su correo electrónico</p>
-						<div className="flex flex-col justify-around gap-4">
+						<div className="flex flex-col items-center justify-around gap-4">
 							<input
 								onChange={(e) => setUserEmail(e.target.value)}
 								className="w-[30em] p-3"
@@ -74,15 +78,23 @@ const DeleteUser = () => {
 							/>
 							<button
 								onClick={removeUser}
-								className="font-bold bg-text_blue text-white text-lg px-14 py-2 rounded-lg">
-								Confirmar
+								className="font-bold bg-text_blue text-white text-lg px-10 py-2 rounded-lg">
+								{loading ? (
+									<HashLoader color={'#fff'} size={24} />
+								) : (
+                                    'Confirmar'
+								)}
 							</button>
 						</div>
 					</section>
 				)}
 				<section
-					className={`${userDelete ? '' : 'hidden'} flex flex-col items-center gap-3`}>
-					<p className="text-white text-2xl font-bold">Usuario eliminado exitosamente</p>
+					className={`${
+						userDelete ? '' : 'hidden'
+					} flex flex-col items-center gap-3`}>
+					<p className="text-white text-2xl font-bold">
+						Usuario eliminado exitosamente
+					</p>
 
 					<button
 						onClick={returnHome}
