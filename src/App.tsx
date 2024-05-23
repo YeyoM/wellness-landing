@@ -6,6 +6,7 @@ import ErrorPage from './pages/Error';
 import GetGraphics from './pages/GetGraphics';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
+import DeleteUser from './pages/DeleteUser';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/resultados" element={<GetGraphics />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 				<Route path="/terms-conditions" element={<TermsConditions />} />
+				<Route path="/remover-usuario" element={<DeleteUser />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
