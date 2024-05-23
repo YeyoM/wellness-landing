@@ -49,7 +49,7 @@ const DeleteUser = () => {
 			<main className="w-100 h-[calc(100vh-76px)] flex justify-center items-center bg-primary">
 				<section className={`${confirm ? 'hidden' : ''} flex flex-col gap-6`}>
 					<p className="text-2xl">
-						¿Estás seguro que deseas remover tu usuario?
+						¿Estás seguro que deseas eliminar tu usuario?
 					</p>
 					<div className="flex justify-around">
 						<button
